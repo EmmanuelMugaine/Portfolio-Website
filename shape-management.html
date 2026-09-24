@@ -16,7 +16,7 @@
   <body>
     <!-- NAV -->
     <nav>
-      <a href="index.html#hero" class="nav-logo">EM_</a>
+      <a href="index.html#hero" class="nav-logo">EM</a>
       <ul class="nav-links">
         <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#skills">Skills</a></li>
@@ -38,7 +38,7 @@
         </div>
         <p class="entry-summary">
           An interactive console application for managing a collection of
-          shapes — built around an abstract base class, inheritance, and
+          shapes, built around an abstract base class, inheritance, and
           polymorphism, in pure Java with no external dependencies.
         </p>
       </div>
@@ -49,12 +49,11 @@
         <div class="entry-section">
           <h2>What it does</h2>
           <p>
-            The program lets a user build up a collection of shapes
-            (rectangles, squares, circles, triangles) through a
-            menu-driven console interface, then inspect, translate, scale,
-            or remove them individually or as a group. Each shape knows
-            how to calculate its own area and perimeter, regardless of
-            which type it is.
+            The program lets a user build up a collection of shapes (rectangles,
+            squares, circles, triangles) through a menu-driven console
+            interface, then inspect, translate, scale, or remove them
+            individually or as a group. Each shape knows how to calculate its
+            own area and perimeter, regardless of which type it is.
           </p>
         </div>
 
@@ -63,21 +62,20 @@
           <p>
             <code>Shape</code> is an abstract base class that
             <code>Rectangle</code>, <code>Square</code>, <code>Circle</code>,
-            and <code>Triangle</code> all extend, each implementing its own
-            area and perimeter logic. Calling code can treat any shape
-            polymorphically — it doesn't need to know which concrete type
-            it's holding to ask for its area.
+            and <code>Triangle</code> all extend, each implementing its own area
+            and perimeter logic. Calling code can treat any shape
+            polymorphically as it doesn't need to know which concrete type it's
+            holding to ask for its area.
           </p>
           <p>
             A separate <code>ShapeList</code> class wraps an
             <code>ArrayList&lt;Shape&gt;</code> and exposes the group-level
             operations (add, remove, inspect, translate, scale) rather than
-            letting calling code manipulate the raw list directly. The
-            console menu itself is driven by a <code>Scanner</code> loop
-            with input validation, catching
-            <code>InputMismatchException</code> so an unexpected input
-            (like typing a letter where a number's expected) doesn't crash
-            the whole program.
+            letting calling code manipulate the raw list directly. The console
+            menu itself is driven by a <code>Scanner</code> loop with input
+            validation, catching <code>InputMismatchException</code> so an
+            unexpected input (like typing a letter where a number's expected)
+            doesn't crash the whole program.
           </p>
         </div>
 
@@ -85,21 +83,21 @@
           <h2>Challenges</h2>
           <p>
             The main design decision I had to think through properly was
-            inheritance versus composition. Every shape needs a position,
-            so it was tempting to just have <code>Shape</code> extend a
-            <code>Coordinates</code> class — but a shape
-            <em>has</em> a position, it <em>isn't</em> one, so I gave
-            <code>Shape</code> a <code>Coordinates</code> field instead of
-            extending it. It's a small distinction, but getting inheritance
-            (is-a) and composition (has-a) right matters for keeping a
-            class hierarchy meaning what it says — the alternative would
-            have technically worked but misrepresented the relationship.
+            inheritance versus composition. Every shape needs a position, so it
+            was tempting to just have <code>Shape</code> extend a
+            <code>Coordinates</code> class — but a shape <em>has</em> a
+            position, it <em>isn't</em> one, so I gave <code>Shape</code> a
+            <code>Coordinates</code> field instead of extending it. It's a small
+            distinction, but getting inheritance (is-a) and composition (has-a)
+            right matters for keeping a class hierarchy meaning what it says.
+            Although the alternative would have technically worked it would have
+            misrepresented the relationship.
           </p>
           <p>
             The other challenge was purely defensive: console input is
             unpredictable, and I wanted invalid input to produce a clear
-            re-prompt rather than an unhandled exception ending the
-            program mid-session.
+            re-prompt rather than an unhandled exception ending the program
+            mid-session.
           </p>
         </div>
 
@@ -111,14 +109,14 @@
               perimeter calculations for each shape type
             </li>
             <li>
-              Consider a simple GUI on top of the existing class
-              structure, since the underlying model doesn't depend on the
-              console interface at all
+              Consider a simple GUI on top of the existing class structure,
+              since the underlying model doesn't depend on the console interface
+              at all
             </li>
             <li>
-              Extract shape validation (e.g. rejecting a negative radius or
-              side length) into a shared method rather than repeating
-              similar checks across shape constructors
+              Extract shape validation (e.g. rejecting a negative radius or side
+              length) into a shared method rather than repeating similar checks
+              across shape constructors
             </li>
           </ul>
         </div>

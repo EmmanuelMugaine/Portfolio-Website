@@ -16,7 +16,7 @@
   <body>
     <!-- NAV -->
     <nav>
-      <a href="index.html#hero" class="nav-logo">EM_</a>
+      <a href="index.html#hero" class="nav-logo">EM</a>
       <ul class="nav-links">
         <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#skills">Skills</a></li>
@@ -35,13 +35,12 @@
           <span class="tag">Python</span>
           <span class="tag">Tkinter</span>
           <span class="tag">Matplotlib</span>
-          <span class="tag">Coursework Project</span>
         </div>
         <p class="entry-summary">
-          A desktop finance tracker that loads account, budget, and
-          transaction data from CSV files and presents it through a
-          Tkinter dashboard — with sorting and searching algorithms built
-          from scratch rather than relying on Python's built-ins.
+          A desktop finance tracker that loads account, budget, and transaction
+          data from CSV files and presents it through a Tkinter dashboard — with
+          sorting and searching algorithms built from scratch rather than
+          relying on Python's built-ins.
         </p>
       </div>
     </section>
@@ -51,13 +50,13 @@
         <div class="entry-section">
           <h2>What it does</h2>
           <p>
-            LedgerWise reads a user's accounts, budgets, and transactions
-            from CSV files and pulls them together into a four-tab
-            interface: a Dashboard overview, a sortable and searchable
-            Transactions table, a Budgets view, and a Reports tab with a
-            category-spending breakdown rendered as a pie chart. It also
-            forecasts whether the user is on track to stay within budget by
-            the end of the month, based on their spending pattern so far.
+            LedgerWise reads a user's accounts, budgets, and transactions from
+            CSV files and pulls them together into a four-tab interface: a
+            Dashboard overview, a sortable and searchable Transactions table, a
+            Budgets view, and a Reports tab with a category-spending breakdown
+            rendered as a pie chart. It also forecasts whether the user is on
+            track to stay within budget by the end of the month, based on their
+            spending pattern so far.
           </p>
         </div>
 
@@ -66,43 +65,43 @@
           <p>
             Rather than reaching for Python's built-in <code>sorted()</code>
             or a library search function, I implemented merge sort, binary
-            search, and linear search myself. Sorting transactions by date
-            or amount uses the merge sort, and looking up a transaction by
-            a known key uses binary search against the sorted result —
-            giving me an O(n log n) sort and O(log n) lookup instead of
-            scanning the full list every time. Free-text search (e.g.
-            filtering by description) falls back to linear search, since
-            the data isn't sorted on that field.
+            search, and linear search myself. Sorting transactions by date or
+            amount uses the merge sort, and looking up a transaction by a known
+            key uses binary search against the sorted result. This resulted in
+            giving me an O(n log n) sort and O(log n) lookup instead of scanning
+            the full list every time. Free-text search (e.g. filtering by
+            description) falls back to linear search, since the data isn't
+            sorted on that field.
           </p>
           <p>
-            The GUI itself is built with Tkinter, and the Reports tab
-            embeds a Matplotlib pie chart directly inside the Tkinter
-            window using <code>matplotlib.backends.backend_tkagg</code>,
-            rather than opening a separate plot window.
+            The GUI itself is built with Tkinter, and the Reports tab embeds a
+            Matplotlib pie chart directly inside the Tkinter window using
+            <code>matplotlib.backends.backend_tkagg</code>, rather than opening
+            a separate plot window which would cause the code to pause at that
+            point until the external window is closed.
           </p>
         </div>
 
         <div class="entry-section">
           <h2>Challenges</h2>
           <p>
-            The trickiest part wasn't the algorithms — it was making sure
-            bad input data couldn't silently break the app. CSV files are
-            easy to malform (a missing column, a corrupted row, a
-            non-numeric amount), and I didn't want that to crash the
-            program or, worse, produce a wrong balance without any
-            warning. I wrote a custom <code>DataLoadError</code> exception
-            and validation logic that checks file structure and row-level
-            data as it's loaded, so problems get caught and reported
-            clearly instead of propagating into the calculations.
+            The trickiest part wasn't the algorithms but making sure bad input
+            data couldn't silently break the app. CSV files are easy to malform
+            (a missing column, a corrupted row, a non-numeric amount), and I
+            didn't want that to crash the program or, worse, produce a wrong
+            balance without any warning. I wrote a custom
+            <code>DataLoadError</code> exception and validation logic that
+            checks file structure and row-level data as it's loaded, so problems
+            get caught and reported clearly instead of propagating into the
+            calculations and make finding the original cause of error difficult.
           </p>
           <p>
             The budget forecast was the other interesting problem: turning
-            "here's what's been spent so far this month" into a
-            reasonable projection of the month-end total required
-            rule-based logic around spending rate and days remaining,
-            rather than anything more statistically elaborate — a
-            deliberate trade-off for something explainable over something
-            "smarter" but opaque.
+            "here's what's been spent so far this month" into a reasonable
+            projection of the month-end total required rule-based logic around
+            spending rate and days remaining, rather than anything more
+            statistically elaborate. This was a deliberate trade-off for
+            something explainable over something "smarter" but opaque.
           </p>
         </div>
 
@@ -110,14 +109,13 @@
           <h2>What I'd do differently</h2>
           <ul>
             <li>
-              Move from CSV files to a lightweight database (SQLite) to
-              avoid re-parsing and re-validating the full dataset on every
-              load
+              Move from CSV files to a lightweight database (SQLite) to avoid
+              re-parsing and re-validating the full dataset on every load
             </li>
             <li>
               Add unit tests around the sorting/searching functions and the
-              forecast logic specifically, since those are the parts most
-              likely to break silently if I refactor later
+              forecast logic specifically, since those are the parts most likely
+              to break silently if I refactor later
             </li>
             <li>
               Extract the Tkinter UI code from the data-handling logic more
