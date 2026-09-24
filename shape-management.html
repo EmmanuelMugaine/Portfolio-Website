@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shape Management System — Project Journal — Emmanuel Mugaine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="index.html#hero" class="nav-logo">EM_</a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="page-intro">
+      <a href="journal.html" class="back-link">← Back to journal</a>
+      <div class="entry-header">
+        <h1>Shape Management System</h1>
+        <div class="entry-meta-row">
+          <span class="tag">Java</span>
+          <span class="tag">OOP</span>
+          <span class="tag">Coursework Project</span>
+        </div>
+        <p class="entry-summary">
+          An interactive console application for managing a collection of
+          shapes — built around an abstract base class, inheritance, and
+          polymorphism, in pure Java with no external dependencies.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="entry-body">
+        <div class="entry-section">
+          <h2>What it does</h2>
+          <p>
+            The program lets a user build up a collection of shapes
+            (rectangles, squares, circles, triangles) through a
+            menu-driven console interface, then inspect, translate, scale,
+            or remove them individually or as a group. Each shape knows
+            how to calculate its own area and perimeter, regardless of
+            which type it is.
+          </p>
+        </div>
+
+        <div class="entry-section">
+          <h2>Technical approach</h2>
+          <p>
+            <code>Shape</code> is an abstract base class that
+            <code>Rectangle</code>, <code>Square</code>, <code>Circle</code>,
+            and <code>Triangle</code> all extend, each implementing its own
+            area and perimeter logic. Calling code can treat any shape
+            polymorphically — it doesn't need to know which concrete type
+            it's holding to ask for its area.
+          </p>
+          <p>
+            A separate <code>ShapeList</code> class wraps an
+            <code>ArrayList&lt;Shape&gt;</code> and exposes the group-level
+            operations (add, remove, inspect, translate, scale) rather than
+            letting calling code manipulate the raw list directly. The
+            console menu itself is driven by a <code>Scanner</code> loop
+            with input validation, catching
+            <code>InputMismatchException</code> so an unexpected input
+            (like typing a letter where a number's expected) doesn't crash
+            the whole program.
+          </p>
+        </div>
+
+        <div class="entry-section">
+          <h2>Challenges</h2>
+          <p>
+            The main design decision I had to think through properly was
+            inheritance versus composition. Every shape needs a position,
+            so it was tempting to just have <code>Shape</code> extend a
+            <code>Coordinates</code> class — but a shape
+            <em>has</em> a position, it <em>isn't</em> one, so I gave
+            <code>Shape</code> a <code>Coordinates</code> field instead of
+            extending it. It's a small distinction, but getting inheritance
+            (is-a) and composition (has-a) right matters for keeping a
+            class hierarchy meaning what it says — the alternative would
+            have technically worked but misrepresented the relationship.
+          </p>
+          <p>
+            The other challenge was purely defensive: console input is
+            unpredictable, and I wanted invalid input to produce a clear
+            re-prompt rather than an unhandled exception ending the
+            program mid-session.
+          </p>
+        </div>
+
+        <div class="entry-section">
+          <h2>What I'd do differently</h2>
+          <ul>
+            <li>
+              Add a proper unit test suite (e.g. JUnit) around the area and
+              perimeter calculations for each shape type
+            </li>
+            <li>
+              Consider a simple GUI on top of the existing class
+              structure, since the underlying model doesn't depend on the
+              console interface at all
+            </li>
+            <li>
+              Extract shape validation (e.g. rejecting a negative radius or
+              side length) into a shared method rather than repeating
+              similar checks across shape constructors
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry-links">
+          <a
+            href="https://github.com/EmmanuelMugaine/IY4101-Final-Object-Oriented-Programming-project"
+            class="profile-link"
+            >Source code on GitHub →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Emmanuel Mugaine — <span>Computer Science with Cyber Security</span>
+      </p>
+      <p>University of York</p>
+    </footer>
+  </body>
+</html>
